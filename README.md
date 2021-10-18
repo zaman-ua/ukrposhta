@@ -122,12 +122,19 @@ $client->get('customer id');
 ```
 Данный метод принимает первым аргументом идентифкатор клиента, по-умолчанию это UUID контрагента. Если указать второй параметр true, то в этом случае первый аргумент будет выступать как external-id
 ### Печать накладных
-Для работы с накладным есть класс Ukrposhta\Form с методом **saveSticker**
+Для работы с накладным есть класс Ukrposhta\Form с методом **getSticker**
 ```php
 $config = new Ukrposhta\Data\Configuration();
 $config->setBearer('string bearer'); 
 $config->setToken('string token');
 $form = new Ukrposhta\Form($config);
-$form->saveSticker('shipment uuid or barcode', './path/to/save');
+$resource = \GuzzleHttp\Psr7\Utils::tryFopen('/path/to/sticker.pdf', 'w');
+$params = new Storage([
+    'sink' => $resource
+])
+
+
+
+$form->getSticker('shipment uuid or barcode', $params);
 ```
-Данный метод принимает два обязательных аргумента, первый - идентификатор отправления(UUID отправления или barcode), второй - путь сохранения файла. Третий аргумент - это название сохраняемого файла, по-умолчанию "sticker.pdf". Четверый - список параметров передваемых в запросе в виде объекта класса Ukrposhta\Data\Storage.
+Данный метод принимает два обязательных аргумента, первый - идентификатор отправления(UUID отправления или barcode), .  Второй - список параметров передваемых в запросе в виде объекта класса Ukrposhta\Data\Storage, так же в нем можно передать путь для [сохраняемого файла](https://docs.guzzlephp.org/en/stable/request-options.html#sink). Четвертый - closure для обработки ответа.
