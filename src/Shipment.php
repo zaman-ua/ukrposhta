@@ -63,7 +63,14 @@ class Shipment extends Api
 		return $this->send($url)['isPriceChangedInPostOffice'];
 	}
 
-	public function getStatus(string $barcodeOrUuid)
+    /**
+     * @deprecated
+     * @see https://dev.ukrposhta.ua/uploads/Status-tracking-API-27052021.pdf
+     *
+     * @param string $barcodeOrUuid
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+	public function getStatuses(string $barcodeOrUuid)
 	{
 		$url = $this->getUrl(function (string $url) use ($barcodeOrUuid) {
 			return $url . "/{$barcodeOrUuid}/lifecycle";
