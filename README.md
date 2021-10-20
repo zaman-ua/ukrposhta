@@ -7,13 +7,10 @@
 - **Формы** - получение формы отправки(накладной) в формате *pdf*.
 - **Документацией** - получение последней актуальной документации по API.
 # Установка
-### git
-```bash
-git clone https://github.com/kex15i10/ukrposhta
-```
+
 ### composer
 ```bash
-composer require kex15i10/ukrposhta
+composer require vldmrk/ukrposhta
 ```
 # Использование
 ### Конфигурация
