@@ -6,7 +6,7 @@ use Ukrposhta\Data\Storage;
 
 class Tracking extends Api
 {
-    const ROOT_URL = 'https://www.ukrposhta.ua/status-tracking/0.0.1/';
+    const ROOT_URL = 'https://ukrposhta.ua/status-tracking/0.0.1/';
     const REQUEST_URL = 'statuses';
 
     /**
@@ -31,6 +31,37 @@ class Tracking extends Api
     public function fetchLastStatuses(Storage $params) {
         $url = $this->getUrl(function (string $url) {
             return $url . "/last";
+        });
+
+        return $this->send($url, $params, 'POST');
+    }
+
+    /**
+     * $params = new Storage();
+     * $params->addData(["RF063354223UA", "RF065314223UA"])
+     *
+     * @param Storage $params
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+    public function fetchWithNotFoundStatuses(Storage $params) {
+        $url = $this->getUrl(function (string $url) {
+            return $url . "/with-not-found";
+        });
+
+        return $this->send($url, $params, 'POST');
+    }
+
+
+    /**
+     * $params = new Storage();
+     * $params->addData(["RF063354223UA", "RF065314223UA"])
+     *
+     * @param Storage $params
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+    public function fetchWithNotFoundLastStatuses(Storage $params) {
+        $url = $this->getUrl(function (string $url) {
+            return $url . "/last/with-not-found";
         });
 
         return $this->send($url, $params, 'POST');
