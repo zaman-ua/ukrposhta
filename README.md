@@ -10,7 +10,7 @@
 
 ### composer
 ```bash
-composer require vldmrk/ukrposhta
+composer require zaman-ua/ukrposhta
 ```
 # Использование
 ### Конфигурация
