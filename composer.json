@@ -1,5 +1,5 @@
 {
-    "name": "vldmrk/ukrposhta",
+    "name": "zaman-ua/ukrposhta",
     "description": "Client for ukrposhta API",
     "type": "library",
     "keywords": ["ukrposhta", "укр почта", "укр пошта"],
